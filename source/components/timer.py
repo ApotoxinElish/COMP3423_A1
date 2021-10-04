@@ -13,7 +13,7 @@ class Timer:
         self.origin = 30
 
     def draw(self, screen):
-        screen.fill((0, 0, 0), self.button_rect)
+        screen.fill(C.BLACK, self.button_rect)
         screen.blit(self.text, self.rect)
 
     def start(self, level):

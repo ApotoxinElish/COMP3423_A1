@@ -63,7 +63,7 @@ class GamePlay:
         # 设置难度级别
         self.level = 1
         self.correct_times = 0
-        self.answer_timer = timer.Timer((240, 100))
+        self.answer_timer = timer.Timer((240, 150))
 
     def update(self, surface, mouse):
         if mouse[0] and self.paused_rect.collidepoint(mouse[1]):
