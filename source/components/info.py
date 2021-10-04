@@ -17,7 +17,7 @@ class Info:
         if self.state == "main_menu":
             self.state_labels.append((self.create_label("PLAY"), (195, 400)))
             self.state_labels.append((self.create_label("HISTORY"), (150, 500)))
-            self.state_labels.append((self.create_label("TABLE"), (175, 600)))
+            self.state_labels.append((self.create_label("QUIT"), (175, 600)))
         
         elif self.state == "history":
             self.state_labels.append((self.create_label("Back"), (0, 0)))
