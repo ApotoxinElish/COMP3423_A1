@@ -1,33 +1,27 @@
 import pygame
+from pygame import draw
 from .. import setup
 from .. import tools
 from .. import constants as C
 from ..components import button, info
 
 
-class Table:
+class History:
     def start(self, game_info):
         self.game_info = game_info
+        self.info = info.Info("history", self.game_info)
         self.setup_background()
         self.setup_buttons()
-        self.info = info.Info("main_menu", self.game_info)
         self.finished = False
-        self.next = "game_play"
+        self.next = "main_menu"
 
     def setup_background(self):
         self.background = setup.GRAPHICS["background"]
         self.background_rect = self.background.get_rect()
-        self.background = pygame.transform.scale(
-            self.background,
-            (
-                int(self.background_rect.width * C.BG_MULTI),
-                int(self.background_rect.height * C.BG_MULTI),
-            ),
-        )
         self.viewport = setup.SCREEN.get_rect()
 
     def setup_buttons(self):
-        self.buttons = button.Button(0, (240, 450))
+        self.buttons = button.Button(0, (50, 50))
         # self.buttons.image=setup.GRAPHICS['']
         # rect = self.buttons.image.get_rect()
 
@@ -40,16 +34,19 @@ class Table:
         self.update_buttons(mouse)
 
         surface.blit(self.background, self.viewport)
-        surface.blit(self.caption, self.caption_rect)
+        # surface.blit(self.caption, self.caption_rect)
 
         # self.info.update(self.game_info)
         self.info.draw(surface)
+        self.draw(surface)
 
-    def reset_game_info(self):
-        self.game_info.update(
-            {
-                "score": 0,
-                "lives": 3,
-                "time_rest": 30,
-            }
-        )
+    def draw(self, surface):
+        font = pygame.font.Font(C.FONT, 30)
+        i = 0
+        with open(C.HISTORY, "r") as f:
+            for line in f.readlines():
+                image = font.render(line[0:-1], 1, C.BLACK)
+                rect = image.get_rect()
+                rect.center = 240, 100 + 40 * i
+                surface.blit(image, rect)
+                i += 1

@@ -10,3 +10,4 @@ RED = (255, 0, 0)
 
 FONT = "resources/fonts/font.ttf"
 RECORD = "source/data/record.txt"
+HISTORY = "source/data/history.txt"

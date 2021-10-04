@@ -16,6 +16,11 @@ class Info:
         self.state_labels = []
         if self.state == "main_menu":
             self.state_labels.append((self.create_label("PLAY"), (195, 400)))
+            self.state_labels.append((self.create_label("HISTORY"), (150, 500)))
+            self.state_labels.append((self.create_label("TABLE"), (175, 600)))
+        
+        elif self.state == "history":
+            self.state_labels.append((self.create_label("Back"), (0, 0)))
 
         elif self.state == "game_play":
             # 绘制得分
@@ -33,14 +38,14 @@ class Info:
                     (10, 50),
                 )
             )
-            self.player_image = setup.GRAPHICS["life"]
+            # self.player_image = setup.GRAPHICS["life"]
 
     def create_info_labels(self):
         self.info_labels = []
 
     def create_label(self, label, size=40, width_scale=1.25, height_scale=1):
         font = pygame.font.Font(C.FONT, size)
-        label_image = font.render(label, 1, C.WHITE)
+        label_image = font.render(label, 1, C.BLACK)
         rect = label_image.get_rect()
         label_image = pygame.transform.scale(
             label_image,
@@ -58,5 +63,5 @@ class Info:
         for label in self.info_labels:
             surface.blit(label[0], label[1])
 
-        if self.state == "game_play":
-            surface.blit(self.player_image, (10, 50))
+        # if self.state == "game_play":
+        #     surface.blit(self.player_image, (10, 50))

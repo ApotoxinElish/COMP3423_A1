@@ -1,5 +1,6 @@
 import pygame
 import sys
+import time
 from .. import constants as C
 from .. import setup
 from ..components import button, info
@@ -33,6 +34,16 @@ class GameOver:
                 with open(C.RECORD, "w") as f:
                     f.write(str(self.game_info["score"]))
 
+            with open(C.HISTORY, "a") as f:
+                f.write(
+                    str(
+                        time.asctime(time.localtime(time.time()))
+                        + "    "
+                        + str(self.game_info["score"])
+                        + "\n"
+                    )
+                )
+
     def update(self, surface, mouse):
         if mouse[0]:
             # 如果用户点击 “重新开始”
@@ -44,17 +55,18 @@ class GameOver:
                 # 退出游戏
                 pygame.quit()
                 sys.exit()
+
         self.draw(surface)
 
     def draw(self, surface):
         surface.blit(self.background, (0, 0))
         # 绘制结束界面
         record_score_text = self.gameover_font.render(
-            "Best : %d" % self.record_score, True, C.WHITE
+            "Best : %d" % self.record_score, True, C.BLACK
         )
         surface.blit(record_score_text, (50, 50))
 
-        gameover_text1 = self.gameover_font.render("Your Score", True, C.WHITE)
+        gameover_text1 = self.gameover_font.render("Your Score", True, C.BLACK)
         gameover_text1_rect = gameover_text1.get_rect()
         gameover_text1_rect.left, gameover_text1_rect.top = (
             C.SCREEN_W - gameover_text1_rect.width
@@ -62,7 +74,7 @@ class GameOver:
         surface.blit(gameover_text1, gameover_text1_rect)
 
         gameover_text2 = self.gameover_font.render(
-            str(self.game_info["score"]), True, C.WHITE
+            str(self.game_info["score"]), True, C.BLACK
         )
         gameover_text2_rect = gameover_text2.get_rect()
         gameover_text2_rect.left, gameover_text2_rect.top = (
