@@ -1,5 +1,6 @@
 import pygame
 import time
+from .. import constants as C
 
 
 class Timer:
@@ -7,12 +8,11 @@ class Timer:
         self.center = center
         self.button_rect = pygame.Rect(0, 0, 100, 50)
         self.button_rect.center = center
-        self.font = pygame.font.Font("font/font.ttf", 48)
+        self.font = pygame.font.Font(C.FONT, 48)
 
         self.origin = 30
 
-    def show(self, screen):
-        self.update()
+    def draw(self, screen):
         screen.fill((0, 0, 0), self.button_rect)
         screen.blit(self.text, self.rect)
 

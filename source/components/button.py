@@ -1,4 +1,5 @@
 import pygame
+from .. import constants as C
 from random import *
 
 
@@ -8,10 +9,10 @@ class Button:
         self.center = center
         self.button_rect = pygame.Rect(0, 0, 150, 100)
         self.button_rect.center = center
-        self.font = pygame.font.Font("font/font.ttf", 48)
+        self.font = pygame.font.Font(C.FONT, 48)
         self.update()
 
-    def show(self, screen):
+    def draw(self, screen):
         screen.fill((0, 0, 0), self.button_rect)
         screen.blit(self.text, self.rect)
 
