@@ -34,7 +34,7 @@ class MainMenu:
             ),
         )
         self.viewport = setup.SCREEN.get_rect()
-        self.caption = setup.GRAPHICS["enemy3_n1"]
+        self.caption = setup.GRAPHICS["title"]
         self.caption_rect = self.caption.get_rect()
         self.caption_rect.center = (C.SCREEN_W / 2, 200)
 
